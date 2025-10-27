@@ -1,0 +1,1241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+}
+
+/* Wave Animation Background - UPDATED */
+@keyframes wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1);
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.8);
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1);
+    }
+}
+
+.wave {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 200%;
+    height: 140px; /* diperbesar dari 100px */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,80 Q300,120 600,80 T1200,80 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.3)"/></svg>');
+    background-size: 50% 140px; /* sesuaikan dengan height */
+    animation: wave 10s linear infinite;
+    z-index: 1;
+}
+
+.wave:nth-child(2) {
+    bottom: -20px; /* ubah dari 10px ke 0 */
+    height: 140px;
+    opacity: 0.5;
+    animation: wave 15s linear infinite reverse; /* tambahkan reverse */
+    z-index: 2;
+}
+
+/* Perbaiki wave di ::before juga */
+.hero::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 140px; /* dari 100px */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,80 Q300,120 600,80 T1200,80 L1200,120 L0,120 Z" fill="white"/></svg>');
+    background-size: cover;
+    z-index: 3; /* di atas wave animasi */
+}
+
+/* Bubbles Animation */
+ @keyframes float-up {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.bubble {
+    position: absolute;
+    bottom: -50px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(59,165,209,0.3));
+    border-radius: 50%;
+    animation: float-up linear infinite;
+    pointer-events: none;
+}
+
+/* Water Ripple Effect */
+@keyframes ripple {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.ripple {
+    position: absolute;
+    border: 2px solid rgba(41, 137, 216, 0.5);
+    border-radius: 50%;
+    animation: ripple 2s ease-out infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+}
+
+/* ==== ANIMASI TAMBAHAN ==== */
+
+/* CTA Button Pulse Animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(41, 137, 216, 0.4);
+    }
+}
+
+/* Button Shine Effect */
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.cta-button {
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shine 3s ease-in-out infinite;
+}
+
+/* Icon Rotation on Hover */
+.tech-item h3::before {
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+.tech-item:hover h3::before {
+    transform: rotate(360deg);
+}
+
+/* === Warna berbeda untuk setiap tech-item === */
+.tech-item:nth-child(1),
+.tech-item:nth-child(4) {
+    background: #f3f9ff; /* biru muda */
+    border-left-color: #3ba5d1;
+}
+
+.tech-item:nth-child(2),
+.tech-item:nth-child(3) {
+    background: #e8f2fb; /* sedikit lebih tua tapi tetap lembut */
+    border-left-color: #2989d8;
+}
+
+/* Border Glow Animation */
+@keyframes borderGlow {
+    0%, 100% {
+        border-left-color: #2989d8;
+        box-shadow: -4px 0 15px rgba(41, 137, 216, 0.3);
+    }
+    50% {
+        border-left-color: #3ba5d1;
+        box-shadow: -4px 0 25px rgba(59, 165, 209, 0.5);
+    }
+}
+
+.tech-item:hover {
+    animation: borderGlow 1.5s ease-in-out infinite;
+}
+
+/* Check Mark Animation */
+@keyframes checkPop {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.benefit-icon.animated {
+    animation: checkPop 0.5s ease-out;
+}
+
+/* About Image Glow */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(41, 137, 216, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 50px rgba(41, 137, 216, 0.6);
+    }
+}
+
+.about-image {
+    animation: glow 3s ease-in-out infinite;
+}
+
+/* Gallery Zoom on Scroll */
+.gallery-item.zoom-in {
+    animation: zoomIn 0.6s ease-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Team Avatar Rotate on Hover */
+.team-avatar {
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-avatar {
+    transform: rotate(360deg);
+}
+
+.navbar {
+    background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #3ba5d1 100%);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+/* === HAMBURGER MENU === */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Saat aktif (jadi X) */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* === Logo di Navbar === */
+.nav-logo img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-logo img:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.hero {
+    background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #3ba5d1 100%);
+    color: white;
+    padding: 150px 2rem 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/*.hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,80 Q300,120 600,80 T1200,80 L1200,120 L0,120 Z" fill="white"/></svg>');
+    background-size: cover;
+} */
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* === Logo di Hero === */
+.hero-logo {
+    width: 280px; /* sebelumnya 200px */
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto 1.5rem auto;
+    animation: float 3s ease-in-out infinite;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: #2989d8;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #2989d8, #3ba5d1);
+}
+
+.feature-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #2989d8 #e6f4ff; /* warna scrollbar di Firefox */
+}
+  
+.feature-grid::-webkit-scrollbar {
+    height: 10px;
+}
+  
+.feature-grid::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #2989d8, #3ba5d1);
+    border-radius: 10px;
+}
+  
+.feature-grid::-webkit-scrollbar-track {
+    background: #f0f8ff;
+    border-radius: 10px;
+}
+  
+.feature-card {
+    flex: 0 0 300px; /* lebar tiap kartu */
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+  
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(41, 137, 216, 0.2);
+}    
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2989d8, #3ba5d1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* === Warna berbeda untuk setiap feature-card (lebih kontras & segar) === */
+.feature-card:nth-child(1),
+.feature-card:nth-child(3) {
+    background: #e8faff; /* biru muda ke arah tosca */
+    border-top: 4px solid #2bb0b5; /* biru kehijauan */
+}
+
+.feature-card:nth-child(2),
+.feature-card:nth-child(4) {
+    background: #eaf3ff; /* biru agak lavender */
+    border-top: 4px solid #3a8fd8; /* biru sedang */
+}
+
+/* Hover efek lembut dengan transisi gradasi */
+.feature-card:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(135deg, #e8faff, #eaf3ff);
+    box-shadow: 0 10px 30px rgba(41, 137, 216, 0.25);
+}
+
+.feature-card h3 {
+    color: #2989d8;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.about-image {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, #2989d8, #3ba5d1);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    box-shadow: 0 10px 30px rgba(41, 137, 216, 0.3);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #2989d8, #3ba5d1);
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.tech-item {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #2989d8;
+}
+
+.tech-item h3 {
+    color: #2989d8;
+    margin-bottom: 1rem;
+}
+
+.benefits {
+    background: linear-gradient(135deg, #f0f8ff, #e6f4ff);
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+}
+
+.benefit-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.benefit-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+}
+
+.benefit-icon {
+    width: 40px;
+    height: 40px;
+    background: #2989d8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* === Warna berbeda untuk setiap benefit-item === */
+.benefit-item:nth-child(1),
+.benefit-item:nth-child(3),
+.benefit-item:nth-child(5) {
+    background: #e9f7ff; /* biru muda agak kehijauan */
+}
+
+.benefit-item:nth-child(2),
+.benefit-item:nth-child(4),
+.benefit-item:nth-child(6) {
+    background: #d9f0fa; /* sedikit lebih tua, tetap soft */
+}
+
+.cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #3ba5d1 100%);
+    color: white;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: white;
+    color: #2989d8;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.gallery-grid {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+}
+  
+.gallery-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+  
+.gallery-item {
+    flex: 0 0 280px; /* lebar tetap setiap item */
+    text-align: center;
+}  
+
+.gallery-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #e6f4ff, #b3e0ff);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(41, 137, 216, 0.3);
+}
+
+.gallery-caption {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.team-grid {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #2989d8 #e6f4ff;
+}
+
+.team-grid::-webkit-scrollbar {
+  height: 10px;
+}
+
+.team-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #2989d8, #3ba5d1);
+  border-radius: 10px;
+}
+
+.team-grid::-webkit-scrollbar-track {
+  background: #f0f8ff;
+  border-radius: 10px;
+}
+
+/* supaya tiap kartu punya lebar tetap */
+.team-card {
+  flex: 0 0 250px;
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(41, 137, 216, 0.2);
+}
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #2989d8, #3ba5d1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin: 0 auto 1.5rem;
+}
+
+.team-card h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    color: #2989d8;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.team-nim {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ==== Footer Super Ramping ==== */
+footer {
+    background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #3ba5d1 100%); /* biru transparan elegan */
+    backdrop-filter: blur(10px); /* efek transparan halus */
+    color: black;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px 10px 0 0; /* sudut atas melengkung */
+    box-shadow: 0 -2px 20px rgba(80, 120, 255, 0.3); /* efek glowing lembut */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+  
+footer .container {
+    padding: 0 !important;
+    margin: 0;
+}
+  
+footer * {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+  
+.cta {
+    margin-bottom: 0 !important;
+    padding-bottom: 2rem; /* boleh diubah jadi 1rem kalau mau lebih rapat */
+}    
+
+@media (max-width: 768px) {
+    .hero {
+      padding: 120px 1rem 80px;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-logo {
+        width: 200px; /* sedikit lebih kecil di HP */
+    }
+  
+    .hero h1 {
+      font-size: 1.6rem;   /* sedikit lebih besar dari 1.4rem supaya tetap jelas */
+      line-height: 1.4;
+    }
+  
+    .hero p {
+      font-size: 0.85rem;   /* pas untuk HP sedang */
+      line-height: 1.4rem; /* biar nyaman dibaca */
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .wave,
+    .wave:nth-child(2) {
+      height: 112px;
+    }
+  
+    .cta-button {
+      font-size: 0.85rem;
+      padding: 0.6rem 1.2rem;
+    }
+  
+    /* Grid & layout */
+    .about-content,
+    .tech-grid,
+    .benefit-list,
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .about-text {
+        font-size: 0.95rem; /* lebih kecil di layar sedang */
+        line-height: 1.6;
+    }
+
+    .about-image {
+        height: 250px;       /* lebih kecil di tablet / hp sedang */
+        font-size: 2.2rem;   /* emoji lebih kecil */
+    }
+
+    .tech-item {
+        padding: 1.2rem; /* kecilin padding dari 2rem */
+        font-size: 0.95rem; /* kecilin isi teks */
+    }
+
+    .tech-item h3 {
+        font-size: 1.1rem; /* kecil dari versi desktop */
+        margin-bottom: 0.6rem;
+    }
+
+    .tech-item p {
+        font-size: 0.9rem; /* biar enak dibaca di layar kecil */
+        line-height: 1.5rem;
+    }
+
+    .benefit-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* biar antar item gak terlalu renggang */
+    }
+
+    .benefit-item {
+        padding: 1rem;
+        font-size: 0.95rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .benefit-item h3 {
+        font-size: 1rem; /* kecilin judul */
+        margin-bottom: 0.4rem;
+    }
+
+    .benefit-item p {
+        font-size: 0.85rem; /* biar teks gak gede banget */
+        line-height: 1.4rem;
+    }
+
+    .benefit-icon {
+        font-size: 1.1rem; /* icon lebih kecil */
+        margin-right: 0.6rem;
+    }
+
+    .feature-grid {
+        gap: 1rem; /* jarak antar card lebih kecil */
+        padding-bottom: 0.5rem;
+    }
+
+    .feature-card {
+        flex: 0 0 90%; /* tampil satu per satu secara horizontal scroll */
+        padding: 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem; /* kecilin ikon */
+        margin-bottom: 0.8rem;
+    }
+
+    .section ol {
+        font-size: 0.95rem; /* kecil dari 1.1rem */
+        line-height: 1.7;   /* biar tetap mudah dibaca */
+        padding-left: 1.2rem; /* kiri lebih rapat */
+    }
+
+    .section ol li {
+        margin-bottom: 0.6rem; /* kasih sedikit jarak antar poin */
+    }
+
+    .section div[style*="background: #f8f9fa"] {
+        padding: 1.2rem;  /* dari 2rem jadi lebih rapat */
+        border-radius: 10px;
+    }
+
+    .gallery-grid {
+        gap: 1rem; /* jarak antar item lebih kecil */
+        padding: 0.5rem 0;
+    }
+
+    .gallery-item {
+        flex: 0 0 220px; /* dari 280px -> lebih ramping */
+    }
+
+    .gallery-image {
+        height: 180px; /* dari 250px -> lebih pas untuk HP sedang */
+    }
+
+    .gallery-image div {
+        font-size: 2.5rem; /* emoji lebih kecil dari 4rem */
+    }
+
+    .gallery-caption {
+        font-size: 0.9rem;
+    }
+
+    #team p[style*="font-size: 1.1rem"] {
+        font-size: 0.95rem !important; /* kecilin teks deskripsi */
+        margin-bottom: 2rem !important;
+    }
+
+    .team-grid {
+        gap: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .team-card {
+        flex: 0 0 85%; /* lebar card pas di hp */
+        padding: 1.2rem;
+    }
+
+    .team-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .team-card h3 {
+        font-size: 1rem;
+    }
+
+    .team-role {
+        font-size: 0.9rem;
+    }
+
+    .team-nim {
+        font-size: 0.8rem;
+    }
+
+    #team div[style*="background: #f8f9fa"] {
+        margin-top: 2rem !important;
+        padding: 1.2rem !important;
+        border-radius: 10px !important;
+    }
+
+    #team div[style*="background: #f8f9fa"] h3 {
+        font-size: 1rem;
+    }
+
+    #team div[style*="background: #f8f9fa"] p {
+        font-size: 0.9rem !important;
+        line-height: 1.4rem;
+    }
+  
+    .nav-links {
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+  
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    .nav-content {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 1rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        background: rgba(41, 137, 216, 0.95);
+        position: fixed;
+        top: 75px; /* sedikit di bawah navbar */
+        left: 0;
+        padding: 1rem 0 2rem;
+        display: none;
+        z-index: 900; /* di bawah navbar (navbar z-index:1000) */
+        backdrop-filter: blur(8px); /* biar transparan halus */
+        border-top: 1px solid rgba(255,255,255,0.2);
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+    }
+    
+    .nav-links.active {
+      display: flex;
+    }
+    
+    .nav-links a {
+      padding: 0.5rem 1.5rem;
+      width: 100%;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+  
+    .container {
+      padding: 1.5rem 1rem;
+    }
+  
+    .section-title {
+      font-size: 1.6rem;
+    }
+  
+    .feature-card {
+      flex: 0 0 90%;
+    }
+  
+    .team-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+}
+  
+@media (max-width: 480px) {
+    .hero {
+      padding: 100px 1rem 70px;
+      text-align: center;
+    }
+
+    .hero-content img {
+        max-width: 160px;
+    }
+  
+    .hero h1 {
+      font-size: 1.3rem;   /* cukup kecil biar ga makan layar */
+      line-height: 1.3;
+    }
+  
+    .hero p {
+      font-size: 0.8rem;   /* lebih kecil lagi di HP kecil */
+      line-height: 1.4rem; /* biar tetap rapi */
+      margin-top: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-text {
+        font-size: 0.85rem; /* pas di HP kecil */
+        line-height: 1.5;
+    }
+
+    .about-image {
+        height: 180px;       /* pas untuk HP kecil */
+        font-size: 1.8rem;
+    }
+
+    .tech-item {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .tech-item h3 {
+        font-size: 1rem;
+    }
+
+    .tech-item p {
+        font-size: 0.8rem;
+        line-height: 1.4rem;
+    }
+
+    .benefit-item {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .benefit-item h3 {
+        font-size: 0.95rem;
+    }
+
+    .benefit-item p {
+        font-size: 0.8rem;
+    }
+
+    .benefit-icon {
+        font-size: 1rem;
+    }
+
+    .feature-card {
+        flex: 0 0 85%;
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1rem;
+    }
+
+    .feature-card p {
+        font-size: 0.8rem;
+        line-height: 1.4rem;
+    }
+
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+    }
+
+    .section ol {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        padding-left: 1rem;
+    }
+
+    .section div[style*="background: #f8f9fa"] {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .section ol li {
+        margin-bottom: 0.5rem;
+    }
+
+    .gallery-item {
+        flex: 0 0 180px; /* lebih kecil di HP kecil */
+    }
+
+    .gallery-image {
+        height: 150px;
+    }
+
+    .gallery-image div {
+        font-size: 2rem;
+    }
+
+    .gallery-caption {
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .team-card {
+        flex: 0 0 90%;
+        padding: 1rem;
+    }
+
+    .team-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.4rem;
+    }
+
+    .team-card h3 {
+        font-size: 0.95rem;
+    }
+
+    .team-role {
+        font-size: 0.85rem;
+    }
+
+    .team-nim {
+        font-size: 0.75rem;
+    }
+
+    #team div[style*="background: #f8f9fa"] {
+        padding: 1rem !important;
+        border-radius: 8px !important;
+    }
+
+    #team div[style*="background: #f8f9fa"] p {
+        font-size: 0.8rem !important;
+    }
+  
+    .cta-button {
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+    }
+  
+    .cta h2 {
+      font-size: 1.2rem;
+    }
+  
+    footer {
+      font-size: 12px;
+    }
+  }  
