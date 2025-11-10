@@ -350,6 +350,20 @@ html, body {
     opacity: 0.8;
 }
 
+.nav-app-btn {
+    background: white !important;
+    color: #2989d8 !important;
+    padding: 0.5rem 1.5rem !important;
+    border-radius: 25px !important;
+    font-weight: bold !important;
+    transition: all 0.3s !important;
+}
+
+.nav-app-btn:hover {
+    background: #f0f8ff !important;
+    transform: scale(1.05) !important;
+}
+
 .hero {
     background: linear-gradient(135deg, #1e5799 0%, #2989d8 50%, #3ba5d1 100%);
     color: white;
@@ -851,6 +865,22 @@ footer * {
       gap: 1rem;
     }
 
+    .prinsip-kerja {
+        padding: 1.2rem !important;
+        border-radius: 10px !important;
+        margin-top: 1.5rem !important;
+    }
+    
+    .prinsip-kerja ol {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+        padding-left: 1.2rem !important;
+    }
+    
+    .prinsip-kerja ol li {
+        margin-bottom: 0.6rem !important;
+    }
+
     .about-text {
         font-size: 0.95rem; /* lebih kecil di layar sedang */
         line-height: 1.6;
@@ -1108,6 +1138,16 @@ footer * {
     .about-image {
         height: 180px;       /* pas untuk HP kecil */
         font-size: 1.8rem;
+    }
+
+    .prinsip-kerja {
+        padding: 1rem !important;
+    }
+    
+    .prinsip-kerja ol {
+        font-size: 0.75rem !important;
+        line-height: 1.5 !important;
+        padding-left: 1rem !important;
     }
 
     .tech-item {
